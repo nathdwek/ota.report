@@ -1,0 +1,62 @@
+\documentclass[english,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\sisetup{range-phrase={ -- }}
+\sisetup{range-units=single}
+
+\usepackage[english]{babel}
+
+\title{Analog Electronics Circuits --- 2015 -- 2016\\Design Project Report}
+\author{Gauthier Duchêne -- Nathan Dwek -- Sacha Maes}
+
+\begin{document}
+\maketitle
+\setcounter{section}{4}
+\section{Considerations Taken into Account for Device Sizing}
+
+\paragraph{Sizing of $M_{n6}$}
+${g_m}_{6}$ was chosen in order to bring $p_{2}$ further than $GBW$ so that $GBW$ is mainly determined by $p_1$.
+${V_{ov}}_{6}$ was chosen based on output swing and power efficiency.
+$L_{6}$ is chosen as long as possible in order to get good intrinsic gain and linearity. It is limited by $W_{6} < \SI{500}{\micro\meter}$ in order to limit parasitic capacitances.
+${V_{ds}}_6$ was chosen a bit higher than $\frac{V_{DD}}{2}$, to have almost symmetric swing and to get some more gain and linearity from the higher saturation.
+
+\paragraph{Sizing of $M_{p5}$}
+${i_{ds}}_5$ was chosen based on ${i_{ds}}_6$.
+${V_{ov}}_5$ was chosen based on the output swing.
+${V_{ds}}_5 = {V_{ds}}_6 - V_{DD}$.
+$L_{5}$ was chosen large to have a current source as ideal as possible. To ensure matching and linearity, every transistor in the current mirror should have the same length. $L_{5}$ is thus limited by the width and the parasitic capacitances of any of those transistors.
+
+\paragraph{Sizing of ${M_p}_{1},\:{M_p}_2$}
+Those transistors should have the same sizing and biasing so that the pair is symmetric.
+${g_m}$ is chosen based on $f_{GBW}$.
+$V_{ov}$ is chosen based on power efficiency.
+${V_{db}} = {V_{gs}}_6$.
+$V_{gb}$ was chosen so that $|V_{ds}| > |V_{dsat}| \simeq |V_{ov}|$.
+$L$ was chosen based on intrinsic gain and linearity, and limited by $W$.
+
+\paragraph{Sizing of ${M_{n}}_3, \:{M_{n}}_4$}
+Those transistors should have the same sizing and biasing so that the pair is symmetric.
+${i_{ds}} = {i_{ds}}_1 = {i_{ds}}_2$.
+${V_{ds}} = {V_{gs}} = {V_{gs}}_6$.
+$L$ was chosen to minimize $g_{ds}$ and maximize linearity.
+
+\paragraph{Sizing of ${M_{p}}_7$}
+${i_{ds}}_7 = 2 {i_{ds}}_1$.
+$L_7 = L_5$ to reduce distortion within the current mirror. $L$ was chosen large to have current sources as ideal as possible.
+${V_{gs}}_7 = {V_{gs}}_5$.
+${V_{ds}}_7 = {V_{sb}}_2$.
+
+\paragraph{Sizing of ${M_{p}}_8$}
+${V_{gs}}_8 = {V_{ds}}_8 = {V_{gs}}_5 = {V_{gs}}_7$.
+$L_8 = L_7 = L_5$ to reduce distortion within the current mirrors.
+${i_{ds}}_8$ was chosen 100 times smaller than the smallest stage current, because ${M_{p}}_8$ should not contribute to the power consumption, since ${i_{ds}}_8$ is wasted current.
+
+\paragraph{Sizing of $C_{m}$}
+$C_{m}$ was chosen 5--10 times smaller than $C_L$ so that the Miller pole is the dominant one. On one hand, a large Miller capacitance would load too much the first stage. On the other hand, a small Miller capacitance would load the transistor $M_{n6}$ too much.
+
+\paragraph{Sizing of $R_{m}$}
+The nulling Miller resistance was chosen in order to cancel the second pole of the OTA and thus increase its phase margin.
+\end{document}
