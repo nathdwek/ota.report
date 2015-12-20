@@ -5,4 +5,4 @@
 *.fdb_latexmk
 report.pdf
 partOne.pdf
-
+.directory
