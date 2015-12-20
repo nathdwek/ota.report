@@ -3,3 +3,6 @@
 *.out
 *.log
 *.fdb_latexmk
+report.pdf
+partOne.pdf
+
